@@ -1,0 +1,65 @@
+.TH "" "" "January 2016" "" ""
+2bwm
+.P
+From ArchWiki
+.P
+\fBWarning:\fR 2bwm is still in alpha stage and should be used cautiously. At the moment, 2bwm is only for advanced users.
+.P
+\fB2bwm\fR \fI\(lahttps:\[sl]\[sl]aur.archlinux.org\[sl]packages\[sl]2bwm\[sl]\(ra\fRAUR is a fast floating WM, with the particularity of having 2 borders, written over the XCB library and derived from mcwm written by Michael Cardell. In 2bwm everything is accessible from the keyboard but a pointing device can be used for move, resize and raise\[sl]lower. The name has recently changed from mcwm-beast to 2bwm.
+.SH "CONTENTS"
+.RS 0
+.IP \(bu 4
+\fB1 Installation\fR \fI\(la\[sh]Installation\(ra\fR
+.IP \(bu 4
+\fB2 Configuration\fR \fI\(la\[sh]Configuration\(ra\fR
+.RS 4
+.IP \(bu 4
+\fB2.1 Starting 2bwm\fR \fI\(la\[sh]Starting\[ul]2bwm\(ra\fR
+.RE 0
+
+.RE 0
+
+.SH "INSTALLATION"
+.P
+\fBInstall\fR \fI\(la\[sl]index.php\[sl]Install\(ra\fR \fB2bwm\fR \fI\(lahttps:\[sl]\[sl]aur.archlinux.org\[sl]packages\[sl]2bwm\[sl]\(ra\fRAUR. Although the installation process can be automatic, if directly building from the AUR, it is highly recommended to read and edit the \[dq]config.h\[dq] file in the source directory.
+.SH "CONFIGURATION"
+.SS "Starting 2bwm"
+.P
+2bwm generally starts from a script, either from \fBstartx\fR \fI\(la\[sl]index.php\[sl]Startx\(ra\fR or from a login manager such as \fBXDM\fR \fI\(la\[sl]index.php\[sl]XDM\(ra\fR.
+.P
+If it starts from the console, a .xinitrc file is needed. Here is a complete example:
+.P
+.RS 2
+.nf
+ \[sh]!\[sl]bin\[sl]sh
+
+ \[sh] Set a nice background.
+ xsetroot -solid grey20
+
+ \[sh] Load resources.
+ xrdb -load \[ti]\[sl].Xresources
+
+ \[sh] Start window manager in the background. If it dies, X still lives.
+ 2bwm &
+
+ \[sh] Start a terminal in the foreground. If this dies, X dies.
+ exec urxvt
+.fi
+.RE
+.P
+2bwm used to have startup options. They have been removed because editing the config file was more convenient.
+.SH "SEE ALSO"
+.RS 0
+.IP \(bu 4
+\fB2bwm\fR \fI\(lahttps:\[sl]\[sl]github.com\[sl]venam\[sl]2bwm\(ra\fR - the GitHub repository for 2bwm
+.RE 0
+
+.P
+Retrieved from \[dq]\fI\(lahttps:\[sl]\[sl]wiki.archlinux.org\[sl]index.php?title\[eq]2bwm&oldid\[eq]414463\(ra\fR\[dq]
+.P
+\fBCategory\fR \fI\(la\[sl]index.php\[sl]Special:Categories\(ra\fR:
+.RS 0
+.IP \(bu 4
+\fBStacking WMs\fR \fI\(la\[sl]index.php\[sl]Category:Stacking\[ul]WMs\(ra\fR
+.RE 0
+

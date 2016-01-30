@@ -1,0 +1,22 @@
+{
+  "extends": "airbnb/legacy",
+  "rules": {
+    "strict": [2, "global"],
+    "no-multi-spaces": 0,
+    "no-use-before-define": 0,
+    "no-console": 0,
+    "padded-blocks": 0,
+    "no-else-return": 0
+  },
+  "env": {
+    "es6": true,
+    "browser": true
+  },
+  "ecmaFeatures": {
+    "jsx": true,
+    "experimentalObjectRestSpread": true
+  },
+  "plugins": [
+    "react"
+  ]
+}

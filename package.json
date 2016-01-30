@@ -1,0 +1,29 @@
+{
+  "name": "arch-wiki-man",
+  "version": "1.0.0",
+  "description": "The Arch Wiki as linux man pages",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha ./test"
+  },
+  "keywords": [
+    "arch",
+    "wiki",
+    "man",
+    "manual"
+  ],
+  "author": "Gregory J. Scheerlinck",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "arch-wiki-md-repo": "*",
+    "bluebird": "^3.1.5",
+    "remark": "^3.2.2",
+    "remark-html": "^2.0.2",
+    "remark-man": "^2.0.1",
+    "yargs": "^3.32.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.4"
+  }
+}
