@@ -1,6 +1,5 @@
 _This is a work in progress_
 
-This is the tool I'm building to later make a self-updating markdown repo of the whole arch wiki.
-I will then use said repo to build a command line tool to browse it on the terminal like a boss.
+A tool to browse and search a constantly updated local copy of the entire (English) Arch Wiki on the command line using `man`.
 
 Licensed under GPLv3
