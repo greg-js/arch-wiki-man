@@ -8,6 +8,7 @@ var fileio = require('../lib/fileio');
 var Promise = require('bluebird');
 var fsReadFile = Promise.promisify(require('fs').readFile);
 var fsUnlink = Promise.promisify(require('fs').unlink);
+var fsWriteFile = Promise.promisify(require('fs').writeFile);
 var path = require('path');
 
 describe('methods', function() {
@@ -91,6 +92,23 @@ describe('tmpSave', function() {
 
   after(function(done) {
     fsUnlink(tmp).then(function() {
+      done();
+    });
+  });
+});
+
+describe('removeTmp', function() {
+  var tmp = path.resolve('./tmp/tmpfile');
+
+  before(function(done) {
+    fsWriteFile(tmp, 'hello world').then(function() {
+      done();
+    });
+  });
+
+  it('deletes the temporary file', function(done) {
+    fileio.removeTmp().then(function(result) {
+      expect(result).to.equal('done');
       done();
     });
   });
