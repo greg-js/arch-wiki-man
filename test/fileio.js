@@ -72,7 +72,7 @@ describe('convert', function() {
   });
 
   it('converts articles from md to roff', function() {
-    expect(fileio.convert(contents)).to.have.string(goodRoff.trim());
+    expect(fileio.convert(contents)).to.contain(goodRoff.substr(1, -1).trim());
   });
 });
 

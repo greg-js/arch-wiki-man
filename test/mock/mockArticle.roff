@@ -1,65 +1,657 @@
-.TH "" "" "January 2016" "" ""
-2bwm
+.TH "XDG-MENU" "1" "January 2016" "1.0.0" "/home/greg/dev/nodejs/arch-wiki-man/node_modules/arch-wiki-md-repo/wiki/_content/Xdg-menu.md"
+.SH "NAME"
+\fBXdg-menu\fR - xdg-menu generates menus for WMs using the Free Desktop menu standard. You can install archlinux-xdg-menu from the o\[Fi]cial repositories.
 .P
-From ArchWiki
+\fBxdg-menu\fR generates menus for WMs using the \fBFree Desktop menu standard\fR \fI\(lahttp:\[sl]\[sl]standards.freedesktop.org\[sl]menu-spec\[sl]menu-spec-latest.html\(ra\fR. You can install \fBarchlinux-xdg-menu\fR \fI\(lahttps:\[sl]\[sl]www.archlinux.org\[sl]packages\[sl]?name\[eq]archlinux-xdg-menu\(ra\fR from the \fBo\[Fi]cial repositories\fR \fI\(la\[sl]index.php\[sl]O\[Fi]cial\[ul]repositories\(ra\fR.
 .P
-\fBWarning:\fR 2bwm is still in alpha stage and should be used cautiously. At the moment, 2bwm is only for advanced users.
+The following WMs are supported:
+.RS 0
+.IP \(bu 4
+twm
+.IP \(bu 4
+ion3
+.IP \(bu 4
+WindowMaker
+.IP \(bu 4
+fvwm2
+.IP \(bu 4
+icewm
+.IP \(bu 4
+blackbox
+.IP \(bu 4
+fluxbox
+.IP \(bu 4
+openbox
+.IP \(bu 4
+awesome
+.RE 0
+
 .P
-\fB2bwm\fR \fI\(lahttps:\[sl]\[sl]aur.archlinux.org\[sl]packages\[sl]2bwm\[sl]\(ra\fRAUR is a fast floating WM, with the particularity of having 2 borders, written over the XCB library and derived from mcwm written by Michael Cardell. In 2bwm everything is accessible from the keyboard but a pointing device can be used for move, resize and raise\[sl]lower. The name has recently changed from mcwm-beast to 2bwm.
+KDE, Gnome, Xfce, Enlightenment are already XDG compatible.
 .SH "CONTENTS"
 .RS 0
 .IP \(bu 4
-\fB1 Installation\fR \fI\(la\[sh]Installation\(ra\fR
+\fB1 Menu hierarchy\fR \fI\(la\[sh]Menu\[ul]hierarchy\(ra\fR
 .IP \(bu 4
 \fB2 Configuration\fR \fI\(la\[sh]Configuration\(ra\fR
 .RS 4
 .IP \(bu 4
-\fB2.1 Starting 2bwm\fR \fI\(la\[sh]Starting\[ul]2bwm\(ra\fR
+\fB2.1 Adding desktop entries from other directories\fR \fI\(la\[sh]Adding\[ul]desktop\[ul]entries\[ul]from\[ul]other\[ul]directories\(ra\fR
+.RE 0
+
+.IP \(bu 4
+\fB3 Usage\fR \fI\(la\[sh]Usage\(ra\fR
+.RS 4
+.IP \(bu 4
+\fB3.1 xdg\[ul]menu\fR \fI(xdg\[ul]menu)\fR
+.IP \(bu 4
+\fB3.2 update-menus\fR \fI(update-menus)\fR
+.RE 0
+
+.IP \(bu 4
+\fB4 Examples\fR \fI\(la\[sh]Examples\(ra\fR
+.RS 4
+.IP \(bu 4
+\fB4.1 Awesome\fR \fI\(la\[sh]Awesome\(ra\fR
+.RS 4
+.IP \(bu 4
+\fB4.1.1 With xdg\[ul]menu\fR \fI\(la\[sh]With\[ul]xdg\[ul]menu\(ra\fR
+.RE 0
+
+.IP \(bu 4
+\fB4.2 IceWM\fR \fI\(la\[sh]IceWM\(ra\fR
+.RS 4
+.IP \(bu 4
+\fB4.2.1 With xdg\[ul]menu\fR \fI\(la\[sh]With\[ul]xdg\[ul]menu\[ul]2\(ra\fR
+.IP \(bu 4
+\fB4.2.2 With update-menus\fR \fI\(la\[sh]With\[ul]update-menus\(ra\fR
+.RE 0
+
+.IP \(bu 4
+\fB4.3 Ion3\fR \fI\(la\[sh]Ion3\(ra\fR
+.RS 4
+.IP \(bu 4
+\fB4.3.1 With xdg\[ul]menu\fR \fI\(la\[sh]With\[ul]xdg\[ul]menu\[ul]3\(ra\fR
+.IP \(bu 4
+\fB4.3.2 With update-menus\fR \fI\(la\[sh]With\[ul]update-menus\[ul]2\(ra\fR
+.RE 0
+
+.IP \(bu 4
+\fB4.4 FluxBox\fR \fI\(la\[sh]FluxBox\(ra\fR
+.RS 4
+.IP \(bu 4
+\fB4.4.1 With xdg\[ul]menu\fR \fI\(la\[sh]With\[ul]xdg\[ul]menu\[ul]4\(ra\fR
+.IP \(bu 4
+\fB4.4.2 With update-menus\fR \fI\(la\[sh]With\[ul]update-menus\[ul]3\(ra\fR
+.RE 0
+
+.IP \(bu 4
+\fB4.5 OpenBox\fR \fI\(la\[sh]OpenBox\(ra\fR
+.RS 4
+.IP \(bu 4
+\fB4.5.1 With xdg\[ul]menu\fR \fI\(la\[sh]With\[ul]xdg\[ul]menu\[ul]5\(ra\fR
+.IP \(bu 4
+\fB4.5.2 As a pipe menu\fR \fI\(la\[sh]As\[ul]a\[ul]pipe\[ul]menu\(ra\fR
+.IP \(bu 4
+\fB4.5.3 With update-menus\fR \fI\(la\[sh]With\[ul]update-menus\[ul]4\(ra\fR
+.RE 0
+
+.IP \(bu 4
+\fB4.6 Twm\fR \fI\(la\[sh]Twm\(ra\fR
+.RS 4
+.IP \(bu 4
+\fB4.6.1 With xdg\[ul]menu\fR \fI\(la\[sh]With\[ul]xdg\[ul]menu\[ul]6\(ra\fR
+.IP \(bu 4
+\fB4.6.2 With update-menus\fR \fI\(la\[sh]With\[ul]update-menus\[ul]5\(ra\fR
+.RE 0
+
+.IP \(bu 4
+\fB4.7 WindowMaker\fR \fI\(la\[sh]WindowMaker\(ra\fR
+.RS 4
+.IP \(bu 4
+\fB4.7.1 With xdg\[ul]menu\fR \fI\(la\[sh]With\[ul]xdg\[ul]menu\[ul]7\(ra\fR
+.IP \(bu 4
+\fB4.7.2 With update-menus\fR \fI\(la\[sh]With\[ul]update-menus\[ul]6\(ra\fR
+.RE 0
+
+.IP \(bu 4
+\fB4.8 Fvwm2\fR \fI\(la\[sh]Fvwm2\(ra\fR
+.RS 4
+.IP \(bu 4
+\fB4.8.1 With xdg\[ul]menu\fR \fI\(la\[sh]With\[ul]xdg\[ul]menu\[ul]8\(ra\fR
+.IP \(bu 4
+\fB4.8.2 With update-menus\fR \fI\(la\[sh]With\[ul]update-menus\[ul]7\(ra\fR
+.RE 0
+
+.IP \(bu 4
+\fB4.9 BlackBox\fR \fI\(la\[sh]BlackBox\(ra\fR
+.RS 4
+.IP \(bu 4
+\fB4.9.1 With xdg\[ul]menu\fR \fI\(la\[sh]With\[ul]xdg\[ul]menu\[ul]9\(ra\fR
+.IP \(bu 4
+\fB4.9.2 With update-menus\fR \fI\(la\[sh]With\[ul]update-menus\[ul]8\(ra\fR
 .RE 0
 
 .RE 0
 
-.SH "INSTALLATION"
-.P
-\fBInstall\fR \fI\(la\[sl]index.php\[sl]Install\(ra\fR \fB2bwm\fR \fI\(lahttps:\[sl]\[sl]aur.archlinux.org\[sl]packages\[sl]2bwm\[sl]\(ra\fRAUR. Although the installation process can be automatic, if directly building from the AUR, it is highly recommended to read and edit the \[dq]config.h\[dq] file in the source directory.
+.IP \(bu 4
+\fB5 See also\fR \fI\(la\[sh]See\[ul]also\(ra\fR
+.RE 0
+
+.SS "Menu hierarchy"
+.RS 0
+.IP \(bu 4
+Applications
+.RS 4
+.IP \(bu 4
+Accessibility
+.IP \(bu 4
+Accessories
+.IP \(bu 4
+Development
+.IP \(bu 4
+Education
+.IP \(bu 4
+Games
+.IP \(bu 4
+Graphics
+.IP \(bu 4
+Internet
+.IP \(bu 4
+Multimedia
+.IP \(bu 4
+O\[Fi]ce
+.IP \(bu 4
+Other
+.IP \(bu 4
+Science
+.IP \(bu 4
+System
+.RE 0
+
+.RE 0
+
 .SH "CONFIGURATION"
-.SS "Starting 2bwm"
 .P
-2bwm generally starts from a script, either from \fBstartx\fR \fI\(la\[sl]index.php\[sl]Startx\(ra\fR or from a login manager such as \fBXDM\fR \fI\(la\[sl]index.php\[sl]XDM\(ra\fR.
+Xdg\[ul]menu relies on three sets of information to generate menus: a root menu or in other words an XML menu template generally passed on the command line, information cached when it was last run, and a series of configuration files.
+.RS 0
+.IP \(bu 4
+You can find some XML menu templates in \[sl]etc\[sl]xdg\[sl]menus.
+.IP \(bu 4
+If altering the code in xdg\[ul]menu to change layout, make sure you delete everything in \[ti]\[sl].xdg\[ul]menu\[ul]cache or you will spend hours trying to figure out why your changes to the perl script don\[aq]t take.
+.IP \(bu 4
+You can find individual application configurations in \[sl]usr\[sl]share\[sl]applications
+.RE 0
+
 .P
-If it starts from the console, a .xinitrc file is needed. Here is a complete example:
+Other configuration file directories can be found under \[sl]usr\[sl]share. In most cases you will not need to touch these. However if you want to change how your menu is layed out you can alter the menu template for minor changes. Major changes require tweaking the actual xdg\[ul]menu perl script. If you find that applications do not appear or that they are called strange things, then you will need to look at the .desktop file in \[sl]usr\[sl]share\[sl]applications. Check this \fBstandards file\fR \fI\(lahttp:\[sl]\[sl]standards.freedesktop.org\[sl]desktop-entry-spec\[sl]desktop-entry-spec-1.0.html\(ra\fR .
+.SS "Adding desktop entries from other directories"
+.P
+By default, the Xdg-menu will be populated with applications which install their desktop entries to \fB\[sl]usr\[sl]share\[sl]applications\fR. To add applications to the menu which install their desktop entry to a user folder such as \fB\[ti]\[sl].local\[sl]share\[sl]applications\fR, edit the \fB\[sl]etc\[sl]xdg\[sl]menus\[sl]arch-applications.menu\fR file and add an \fB<AppDir>\fR tag for the relevant directory, see below:
+.P
+ \fB\[sl]etc\[sl]xdg\[sl]menus\[sl]arch-applications.menu\fR 
 .P
 .RS 2
 .nf
- \[sh]!\[sl]bin\[sl]sh
+<Menu>
 
- \[sh] Set a nice background.
- xsetroot -solid grey20
+  <Name>Applications<\[sl]Name>
+  <Directory>Arch-Applications.directory<\[sl]Directory>
+  <DefaultAppDirs\[sl]>
+  **<AppDir>\[sl]home\[sl]\[ul]username\[ul]\[sl].local\[sl]share\[sl]applications<\[sl]AppDir>**
+  <DefaultDirectoryDirs\[sl]>
+  <DefaultMergeDirs\[sl]>
+  ...
+.fi
+.RE
+.SH "USAGE"
+.SS "xdg\[ul]menu"
+.P
+.RS 2
+.nf
+xdg\[ul]menu \[lB]--format <format>\[rB] \[lB]--desktop <desktop>\[rB] 
+         \[lB]--charset <charset>\[rB] \[lB]--language <language>\[rB]  
+	 \[lB]--root-menu <root-menu>\[rB] \[lB]--die-on-error\[rB]
+	 \[lB]--fullmenu\[rB] \[lB]--help\[rB]
 
- \[sh] Load resources.
- xrdb -load \[ti]\[sl].Xresources
+	format - output format
+	         possible formats: twm, WindowMaker, fvwm2, icewm, ion3
+	                           blackbox, fluxbox, openbox, 
+				   xfce4, openbox3, openbox3-pipe, awesome
+				   readable
+		 default: WindowMaker
 
- \[sh] Start window manager in the background. If it dies, X still lives.
- 2bwm &
+ 	fullmenu  - output a full menu and not only a submenu
 
- \[sh] Start a terminal in the foreground. If this dies, X dies.
- exec urxvt
+	desktop - desktop name for NotShowIn and OnlyShowIn
+		 default: the same as format
+
+	charset - output charset
+		 default: <locale>
+
+	language - output language
+		 default: <locale>
+
+	root-menu - location of root menu file
+		 default: \[sl]opt\[sl]gnome\[sl]etc\[sl]xdg\[sl]menus\[sl]applications.menu
+
+	die-on-error - abort execution on any error, 
+		 default: try to continue
+
+	verbose - print debugging information
+
+	help - print this text
+.fi
+.RE
+.SS "update-menus"
+.P
+\fBupdate-menus\fR updates WMs menus from XDG stuff and can do it automaticaly using config.
+.P
+This is a script wrapper around xdg\[ul]menu that relies on \[sl]etc\[sl]update-menus.conf
+.P
+You need to install package: archlinux-xdg-menu (xdg\[ul]menu)
+.P
+\[sl]etc\[sl]update-menus.conf selects from a list of window managers for which the menu should be generated. Comments with \[sh] are allowed.
+.P
+All generated menus placed in \[sl]var\[sl]cache\[sl]xdg-menu\[sl]. See wm-specific Examples section of this page to get more information.
+.SH "EXAMPLES"
+.SS "Awesome"
+.SS "With xdg\[ul]menu"
+.P
+.RS 2
+.nf
+\[Do] xdg\[ul]menu --format awesome --root-menu \[sl]etc\[sl]xdg\[sl]menus\[sl]arch-applications.menu >\[ti]\[sl].config\[sl]awesome\[sl]archmenu.lua
 .fi
 .RE
 .P
-2bwm used to have startup options. They have been removed because editing the config file was more convenient.
-.SH "SEE ALSO"
+Then edit your rc.lua as shown below
 .RS 0
 .IP \(bu 4
-\fB2bwm\fR \fI\(lahttps:\[sl]\[sl]github.com\[sl]venam\[sl]2bwm\(ra\fR - the GitHub repository for 2bwm
+Add a require statment for your new menu.lua file
+.IP \(bu 4
+Add an entry to your awful.menu object for your new menu which calls xdgmenu
 .RE 0
 
 .P
-Retrieved from \[dq]\fI\(lahttps:\[sl]\[sl]wiki.archlinux.org\[sl]index.php?title\[eq]2bwm&oldid\[eq]414463\(ra\fR\[dq]
+.RS 2
+.nf
+...
+xdg\[ul]menu \[eq] require(\[dq]archmenu\[dq])
+...
+
+...
+mymainmenu \[eq] awful.menu(\[lC] items \[eq] \[lC] \[lC] \[dq]awesome\[dq], myawesomemenu, beautiful.awesome\[ul]icon \[rC],
+                                    \[lC] \[dq]Applications\[dq], xdgmenu \[rC],
+                                    \[lC] \[dq]open terminal\[dq], terminal \[rC]
+                                  \[rC]
+                        \[rC])
+...
+.fi
+.RE
+.SS "IceWM"
+.SS "With xdg\[ul]menu"
 .P
-\fBCategory\fR \fI\(la\[sl]index.php\[sl]Special:Categories\(ra\fR:
+.RS 2
+.nf
+\[Do] xdg\[ul]menu --format icewm --fullmenu --root-menu \[sl]etc\[sl]xdg\[sl]menus\[sl]arch-applications.menu >>\[ti]\[sl].icewm\[sl]programs
+.fi
+.RE
+.SS "With update-menus"
 .RS 0
 .IP \(bu 4
-\fBStacking WMs\fR \fI\(la\[sl]index.php\[sl]Category:Stacking\[ul]WMs\(ra\fR
+Uncomment icewm in \[sl]etc\[sl]update-menus.conf
+.IP \(bu 4
+run update-menus as root
+.IP \(bu 4
+make symlink to \[sl]var\[sl]cache\[sl]xdg-menu\[sl]icewm\[sl]programs in \[ti]\[sl].icewm\[sl]programs
 .RE 0
+
+.SS "Ion3"
+.SS "With xdg\[ul]menu"
+.P
+.RS 2
+.nf
+\[Do] xdg\[ul]menu --format ion3  --root-menu \[sl]etc\[sl]xdg\[sl]menus\[sl]arch-applications.menu >\[ti]\[sl].ion3\[sl]default-session--0\[sl]\[ul]xdg-menu.lua
+.fi
+.RE
+.P
+After that, change your cfg\[ul]menus.lua to include \[ul]xdg-menu.lua file and add menu into mainmenu. For example:
+.P
+.RS 2
+.nf
+...
+
+dopath(\[dq]\[ul]xdg-menu\[dq])
+
+-- Main menu
+defmenu(\[dq]mainmenu\[dq], \[lC]
+    submenu(\[dq]XDG Menu\[dq],         \[dq]<NAME-OF-FIRST-MENU-IN-\[ul]xdg-menu.lua-FILE>\[dq]),
+    submenu(\[dq]Programs\[dq],         \[dq]appmenu\[dq]),
+    menuentry(\[dq]Lock screen\[dq],    \[dq]ioncore.exec\[ul]on(\[ul], \[aq]xlock\[aq])\[dq]),
+    menuentry(\[dq]Help\[dq],           \[dq]mod\[ul]query.query\[ul]man(\[ul])\[dq]),
+    menuentry(\[dq]About Ion\[dq],      \[dq]mod\[ul]query.show\[ul]about\[ul]ion(\[ul])\[dq]),
+    submenu(\[dq]Styles\[dq],           \[dq]stylemenu\[dq]),
+    submenu(\[dq]Session\[dq],          \[dq]sessionmenu\[dq]),
+\[rC])
+
+...
+.fi
+.RE
+.SS "With update-menus"
+.RS 0
+.IP \(bu 4
+Uncomment ion3 in \[sl]etc\[sl]update-menus.conf
+.IP \(bu 4
+run update-menus as root
+.IP \(bu 4
+change your cfg\[ul]menus.lua to include xdg-menu.lua file and add menu into mainmenu.
+.RE 0
+
+.P
+For example:
+.P
+.RS 2
+.nf
+...
+
+dopath(\[dq]\[sl]var\[sl]cache\[sl]xdg-menu\[sl]ion3\[sl]xdg-menu.lua\[dq])
+
+-- Main menu
+defmenu(\[dq]mainmenu\[dq], \[lC]
+    submenu(\[dq]XDG Menu\[dq],         \[dq]<NAME-OF-FIRST-MENU-IN-xdg-menu.lua-FILE>\[dq]),
+    submenu(\[dq]Programs\[dq],         \[dq]appmenu\[dq]),
+    menuentry(\[dq]Lock screen\[dq],    \[dq]ioncore.exec\[ul]on(\[ul], \[aq]xlock\[aq])\[dq]),
+    menuentry(\[dq]Help\[dq],           \[dq]mod\[ul]query.query\[ul]man(\[ul])\[dq]),
+    menuentry(\[dq]About Ion\[dq],      \[dq]mod\[ul]query.show\[ul]about\[ul]ion(\[ul])\[dq]),
+    submenu(\[dq]Styles\[dq],           \[dq]stylemenu\[dq]),
+    submenu(\[dq]Session\[dq],          \[dq]sessionmenu\[dq]),
+\[rC])
+
+...
+.fi
+.RE
+.SS "FluxBox"
+.SS "With xdg\[ul]menu"
+.P
+.RS 2
+.nf
+\[Do] xdg\[ul]menu --format fluxbox  --root-menu \[sl]etc\[sl]xdg\[sl]menus\[sl]arch-applications.menu >\[ti]\[sl].fluxbox\[sl]my-menu
+.fi
+.RE
+.P
+Change your menu file to include generated menu.
+.P
+For example add line:
+.P
+.RS 2
+.nf
+      \[lB]include\[rB] (my-menu)
+.fi
+.RE
+.SS "With update-menus"
+.RS 0
+.IP \(bu 4
+Uncomment fluxbox in \[sl]etc\[sl]update-menus.conf
+.IP \(bu 4
+run update-menus as root
+.IP \(bu 4
+change your menu file to include generated menu.
+.RE 0
+
+.P
+For example add line:
+.P
+.RS 2
+.nf
+      \[lB]include\[rB] (\[sl]var\[sl]cache\[sl]xdg-menu\[sl]fluxbox\[sl]boxrc)
+.fi
+.RE
+.SS "OpenBox"
+.SS "With xdg\[ul]menu"
+.P
+Generate menu with
+.P
+.RS 2
+.nf
+\[Do] xdg\[ul]menu --format openbox3 --root-menu \[sl]etc\[sl]xdg\[sl]menus\[sl]arch-applications.menu > xdg-menu.xml
+.fi
+.RE
+.P
+and manually add it into your menu.xml. For example, put xdg-menu.xml into menu.xml and add:
+.P
+.RS 2
+.nf
+<menu id\[eq]\[dq]Applications\[dq] \[sl]>
+.fi
+.RE
+.P
+into root-menu.
+.SS "As a pipe menu"
+.P
+Using xdg\[ul]open as a pipe menu gives you the added benefit of having a menu that automatically updates when you install new applications.
+.P
+Add the following somewhere inside your menu.xml between your root menu tags
+.P
+.RS 2
+.nf
+<menu id\[eq]\[dq]applications\[dq] label\[eq]\[dq]Applications\[dq] execute\[eq]\[dq]xdg\[ul]menu --format openbox3-pipe --root-menu \[sl]etc\[sl]xdg\[sl]menus\[sl]arch-applications.menu\[dq] \[sl]>
+.fi
+.RE
+.P
+A very basic example:
+.P
+.RS 2
+.nf
+<?xml version\[eq]\[dq]1.0\[dq] encoding\[eq]\[dq]UTF-8\[dq]?>
+
+<openbox\[ul]menu xmlns\[eq]\[dq]http:\[sl]\[sl]openbox.org\[sl]3.4\[sl]menu\[dq]>
+
+<menu id\[eq]\[dq]root-menu\[dq] label\[eq]\[dq]Openbox 3\[dq]>
+  <menu id\[eq]\[dq]applications\[dq] label\[eq]\[dq]Applications\[dq] execute\[eq]\[dq]xdg\[ul]menu --format openbox3-pipe --root-menu \[sl]etc\[sl]xdg\[sl]menus\[sl]arch-applications.menu\[dq] \[sl]>
+  <separator \[sl]>
+  <item label\[eq]\[dq]Log Out\[dq]>
+    <action name\[eq]\[dq]Exit\[dq]>
+      <prompt>yes<\[sl]prompt>
+    <\[sl]action>
+  <\[sl]item>
+<\[sl]menu>
+
+<\[sl]openbox\[ul]menu>
+.fi
+.RE
+.SS "With update-menus"
+.RS 0
+.IP \(bu 4
+Uncomment openbox in \[sl]etc\[sl]update-menus.conf
+.IP \(bu 4
+run update-menus as root
+.IP \(bu 4
+change your menu.xml file to include generated menu.
+.RE 0
+
+.P
+For example, add following to root-menu:
+.P
+.RS 2
+.nf
+<menu id\[eq]\[dq]xdg-menu\[dq] label\[eq]\[dq]XDG Menu\[dq] execute\[eq]\[dq]cat \[sl]var\[sl]cache\[sl]xdg-menu\[sl]openbox\[sl]menu.xml\[dq]\[sl]>
+.fi
+.RE
+.SS "Twm"
+.SS "With xdg\[ul]menu"
+.P
+Use
+.P
+.RS 2
+.nf
+\[Do] xdg\[ul]menu --format twm --root-menu \[sl]etc\[sl]xdg\[sl]menus\[sl]arch-applications.menu >my-twm-menu
+.fi
+.RE
+.P
+and add it into twmrc manually. In the case of twm derivatives with m4 preprocessing such as vtwm or ctwm it can be included by adding
+.P
+.RS 2
+.nf
+sinclude(\[ga]\[sl]PATH\[sl]TO\[sl]my-twm-menu\[aq])
+.fi
+.RE
+.P
+to *twmrc.
+.SS "With update-menus"
+.RS 0
+.IP \(bu 4
+Uncomment twm in \[sl]etc\[sl]update-menus.conf
+.IP \(bu 4
+Add into \[sl]etc\[sl]X11\[sl]twm\[sl]system.twmrc file applications menu (add following line:
+.RE 0
+
+.P
+.RS 2
+.nf
+ \[dq]apps\[dq]          f.menu \[dq]Applications\[dq]
+.fi
+.RE
+.P
+into defops menu)
+.RS 0
+.IP \(bu 4
+run update-menus as root
+.IP \(bu 4
+run twm -f \[sl]var\[sl]cache\[sl]xdg-menu\[sl]twm\[sl]twmrc
+.RE 0
+
+.P
+(You will also want to add your other customizations to \[sl]etc\[sl]X11\[sl]twm\[sl]system.twmrc.)
+.SS "WindowMaker"
+.SS "With xdg\[ul]menu"
+.P
+Use
+.P
+.RS 2
+.nf
+\[Do] xdg\[ul]menu --format WindowMaker --root-menu \[sl]etc\[sl]xdg\[sl]menus\[sl]arch-applications.menu >my-wm-menu
+.fi
+.RE
+.P
+and add
+.P
+.RS 2
+.nf
+\[sh]include \[dq]my-wm-menu\[dq]
+.fi
+.RE
+.P
+into your WindowMaker menu file.
+.P
+You can also use the WPrefs \[dq]Application Menu Definitions\[dq], and add the xdg command as a parameter in a \[dq]Generated Submenu\[dq] object.
+.SS "With update-menus"
+.RS 0
+.IP \(bu 4
+Uncomment WindowMaker in \[sl]etc\[sl]update-menus.conf
+.IP \(bu 4
+run update-menus as root
+.IP \(bu 4
+add
+.RE 0
+
+.P
+.RS 2
+.nf
+\[sh]include \[dq]\[sl]var\[sl]cache\[sl]xdg-menu\[sl]WindowMaker\[sl]wmrc\[dq]
+.fi
+.RE
+.P
+into your menu file.
+.SS "Fvwm2"
+.SS "With xdg\[ul]menu"
+.P
+Generate menu
+.P
+.RS 2
+.nf
+\[Do] xdg\[ul]menu --format fvwm2 --root-menu \[sl]etc\[sl]xdg\[sl]menus\[sl]arch-applications.menu >fvwm2-menu
+.fi
+.RE
+.P
+and add menu into root menu
+.P
+.RS 2
+.nf
+read fvwm2-menu
+
+AddToMenu MenuFvwmRoot  \[dq]Root Menu\[dq]             Title
+\[pl]                       \[dq]&0\[rs]. XDG Menu\[dq]          Popup xdg\[ul]menu
+.fi
+.RE
+.SS "With update-menus"
+.RS 0
+.IP \(bu 4
+Uncomment fvwm2 in \[sl]etc\[sl]update-menus.conf
+.IP \(bu 4
+run update-menus as root
+.IP \(bu 4
+change your .fvwm2rc file to include generated menu. For example:
+.RE 0
+
+.P
+.RS 2
+.nf
+AddToMenu MenuFvwmRoot  \[dq]Root Menu\[dq]             Title
+\[pl]                       \[dq]&0\[rs]. XDG Menu\[dq]          Popup xdg\[ul]menu
+.fi
+.RE
+.P
+.RS 2
+.nf
+read \[sl]var\[sl]cache\[sl]xdg-menu\[sl]fvwm2\[sl]fvwm2rc
+.fi
+.RE
+.SS "BlackBox"
+.SS "With xdg\[ul]menu"
+.P
+.RS 2
+.nf
+\[Do] xdg\[ul]menu --format blackbox  --root-menu \[sl]etc\[sl]xdg\[sl]menus\[sl]arch-applications.menu >my-menu
+.fi
+.RE
+.P
+Change your menu file to include generated menu.
+.P
+For example add line:
+.P
+.RS 2
+.nf
+\[lB]include\[rB] (my-menu)
+.fi
+.RE
+.SS "With update-menus"
+.RS 0
+.IP \(bu 4
+Uncomment blackbox in \[sl]etc\[sl]update-menus.conf
+.IP \(bu 4
+run update-menus as root
+.IP \(bu 4
+change your menu file to include generated menu.
+.RE 0
+
+.P
+For example add line:
+.P
+.RS 2
+.nf
+\[lB]include\[rB] (\[sl]var\[sl]cache\[sl]xdg-menu\[sl]blackbox\[sl]boxrc)
+.fi
+.RE
+.SH "SEE ALSO"
+.RS 0
+.IP \(bu 4
+\fBarchlinux-xdg-menu\fR \fI\(lahttps:\[sl]\[sl]www.archlinux.org\[sl]packages\[sl]?name\[eq]archlinux-xdg-menu\(ra\fR
+.IP \(bu 4
+\fBFree Desktop menu standard\fR \fI\(lahttp:\[sl]\[sl]standards.freedesktop.org\[sl]menu-spec\[sl]menu-spec-latest.html\(ra\fR
+.IP \(bu 4
+\fBA workaround for sawfish\fR \fI\(la\[sl]index.php\[sl]Sawfish\(ra\fR
+.RE 0
+
+.P
+Retrieved from \[dq]\fI\(lahttps:\[sl]\[sl]wiki.archlinux.org\[sl]index.php?title\[eq]Xdg-menu&oldid\[eq]411303\(ra\fR\[dq]
 
