@@ -5,7 +5,7 @@ A tool to browse and search a constantly updated local copy of the entire (Engli
 npm install -g arch-wiki-man
 ```
 
-![screenshot](./docs/screenshot.png)]
+![screenshot](./docs/screenshot.png)
 
 # Usage & Examples
 
