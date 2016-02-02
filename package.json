@@ -17,8 +17,9 @@
   "dependencies": {
     "arch-wiki-md-repo": "*",
     "bluebird": "^3.1.5",
+    "chalk": "^1.1.1",
+    "inquirer": "^0.11.4",
     "remark": "^3.2.2",
-    "remark-html": "^2.0.2",
     "remark-man": "^2.0.1",
     "yargs": "^3.32.0"
   },
