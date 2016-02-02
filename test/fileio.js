@@ -8,7 +8,6 @@ var fileio = require('../lib/fileio');
 var Promise = require('bluebird');
 var fsReadFile = Promise.promisify(require('fs').readFile);
 var fsUnlink = Promise.promisify(require('fs').unlink);
-var fsWriteFile = Promise.promisify(require('fs').writeFile);
 var path = require('path');
 
 describe('methods', function() {
@@ -30,6 +29,10 @@ describe('methods', function() {
 
   it('has a processMd function', function() {
     expect(fileio.processMd).to.be.a('function');
+  });
+
+  it('has a getTmp function', function() {
+    expect(fileio.getTmp).to.be.a('function');
   });
 });
 
@@ -86,7 +89,7 @@ describe('tmpSave', function() {
   it('saves a temporary file', function(done) {
     fileio.tmpSave('hello world').then(function(tmpFile) {
       tmp = tmpFile;
-      expect(tmpFile).to.equal(path.resolve('./tmp/tmpfile'));
+      expect(tmpFile).to.equal(path.resolve(fileio.getTmp()));
       fsReadFile(tmpFile, 'utf8').then(function(contents) {
         expect(contents).to.equal('hello world');
         done();
@@ -102,10 +105,8 @@ describe('tmpSave', function() {
 });
 
 describe('removeTmp', function() {
-  var tmp = path.resolve('./tmp/tmpfile');
-
   before(function(done) {
-    fsWriteFile(tmp, 'hello world').then(function() {
+    fileio.tmpSave('hello world').then(function() {
       done();
     });
   });
@@ -127,5 +128,11 @@ describe('processMd', function() {
     var converted = fileio.processMd(article);
     expect(converted).to.be.an('object');
     expect(converted.contents).to.equal('foo\n');
+  });
+});
+
+describe('getTmp', function() {
+  it('gets the tmpfile location', function() {
+    expect(fileio.getTmp()).to.be.a('string');
   });
 });
