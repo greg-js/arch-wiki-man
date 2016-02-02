@@ -19,13 +19,17 @@ var yargs = require('yargs')
   .usage('Usage: $0 <search terms>')
   .default('d', false)
   .boolean('d')
-  .alias('d', 'deep-search')
+  .alias('d', 'desc-search')
+  .default('k', false)
+  .boolean('k')
+  .alias('k', 'apropos')
   .help('h')
   .alias('h', 'help')
   .argv;
 
 var searchTerms = yargs._;
 var isDeep = yargs.d;
+var isApro = yargs.k;
 
 var options = {
   name: '',
@@ -36,7 +40,7 @@ var options = {
   manual: '',
 };
 
-Promise.resolve(narrowDown(articles, searchTerms, isDeep)).then(function select(filteredArticles) {
+Promise.resolve(narrowDown(articles, searchTerms, isDeep, isApro)).then(function select(filteredArticles) {
   return selectArticle(filteredArticles);
 }).then(function makeRoff(selectedArticle) {
   return getContents(selectedArticle);
