@@ -5,12 +5,7 @@ A tool to browse and search a constantly updated local copy of the entire (Engli
 npm install -g arch-wiki-man
 ```
 
-# Updating
-```
-npm install -g arch-wiki-man
-
-```
-Updates are pushed automatically every two days to `https://github.com/greg-js/arch-wiki-md-repo`, a dependency for this project. Whenever the install command is run, the changes will be fetched.
+![screenshot](./docs/screenshot.png)]
 
 # Usage & Examples
 
@@ -41,6 +36,12 @@ awman -w tmux
 ```
 --> `-w` or `--web` option opens the resulting match in a web browser rather than with `man`
 
+# Updating
+```
+npm install -g arch-wiki-man
+
+```
+Updates are pushed automatically every two days to `https://github.com/greg-js/arch-wiki-md-repo`, a dependency for this project. Whenever the install command is run, the changes will be fetched.
 
 # License
 Licensed under GPLv3
