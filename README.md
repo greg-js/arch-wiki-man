@@ -1,13 +1,18 @@
-_This is a work in progress_
-
 A tool to browse and search a constantly updated local copy of the entire (English) Arch Wiki on the command line using `man`.
 
 # Installation
 ```
-npm install arch-wiki-man
+npm install -g arch-wiki-man
 ```
 
-# Usage
+# Updating
+```
+npm install -g arch-wiki-man
+
+```
+Updates are pushed automatically every two days to `https://github.com/greg-js/arch-wiki-md-repo`, a dependency for this project. Whenever the install command is run, the changes will be fetched.
+
+# Usage & Examples
 
 Use the `awman` command (it stands for arch wiki man)
 
