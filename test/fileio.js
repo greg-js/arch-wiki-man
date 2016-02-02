@@ -27,6 +27,10 @@ describe('methods', function() {
   it('has a removeTmp function', function() {
     expect(fileio.removeTmp).to.be.a('function');
   });
+
+  it('has a processMd function', function() {
+    expect(fileio.processMd).to.be.a('function');
+  });
 });
 
 describe('getContents', function() {
@@ -111,5 +115,17 @@ describe('removeTmp', function() {
       expect(result).to.equal('done');
       done();
     });
+  });
+});
+
+describe('processMd', function() {
+  var article = {
+    contents: '[foo](http://www.bar.com)',
+  };
+
+  it('processes the markdown', function() {
+    var converted = fileio.processMd(article);
+    expect(converted).to.be.an('object');
+    expect(converted.contents).to.equal('foo\n');
   });
 });
