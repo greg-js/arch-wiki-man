@@ -23,6 +23,9 @@ var yargs = require('yargs')
   .default('k', false)
   .boolean('k')
   .alias('k', 'apropos')
+  .default('w', false)
+  .boolean('w')
+  .alias('w', 'web')
   .help('h')
   .alias('h', 'help')
   .argv;
@@ -30,6 +33,7 @@ var yargs = require('yargs')
 var searchTerms = yargs._;
 var isDeep = yargs.d;
 var isApro = yargs.k;
+var isWeb = yargs.w;
 
 var options = {
   name: '',
@@ -44,8 +48,13 @@ Promise.resolve(narrowDown(articles, searchTerms, isDeep, isApro)).then(function
   return selectArticle(filteredArticles);
 }).then(function makeRoff(selectedArticle) {
   return getContents(selectedArticle);
-}).then(function passToRemarkMd(article) {
-  return processMd(article);
+}).then(function processArticle(article) {
+  if (isWeb) {
+    spawn('xdg-open', [article.url]);
+    process.exit();
+  } else {
+    return processMd(article);
+  }
 }).then(function passToRemarkMan(article) {
   options.name = article.title;
   options.manual = article.url;
