@@ -9,6 +9,10 @@
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha ./test"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/greg-js/arch-wiki-man.git"
+  },
   "keywords": [
     "arch",
     "wiki",
