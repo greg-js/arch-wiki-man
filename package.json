@@ -1,6 +1,6 @@
 {
   "name": "arch-wiki-man",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "The Arch Wiki as linux man pages",
   "main": "index.js",
   "bin": {
