@@ -2,6 +2,7 @@
 
 'use strict';
 
+var _ = require('lodash');
 var getContents = require('../lib/fileio').getContents;
 var convert = require('../lib/fileio').convert;
 var processMd = require('../lib/fileio').processMd;
@@ -11,7 +12,7 @@ var tmpSave = require('../lib/fileio').tmpSave;
 var removeTmp  = require('../lib/fileio').removeTmp;
 
 var lastUpdate = require('arch-wiki-md-repo').updated;
-var articles = require('arch-wiki-md-repo').doneList;
+var articles = require('arch-wiki-md-repo').db;
 
 var spawn = require('child_process').spawn;
 
@@ -29,6 +30,9 @@ var yargs = require('yargs')
   .boolean('w')
   .alias('w', 'web')
   .describe('w', 'open in browser')
+  .default('l', 'english')
+  .alias('l', 'language')
+  .describe('l', 'choose a language (default: english)')
   .help('h')
   .alias('h', 'help')
   .argv;
@@ -37,6 +41,7 @@ var searchTerms = yargs._;
 var isDeep = yargs.d;
 var isApro = yargs.k;
 var isWeb = yargs.w;
+var lang = yargs.l;
 
 var options = {
   name: '',
@@ -46,6 +51,8 @@ var options = {
   version: '1.0.0',
   manual: '',
 };
+
+articles = _.find(articles, { lang: lang }).articles;
 
 Promise.resolve(narrowDown(articles, searchTerms, isDeep, isApro)).then(function select(filteredArticles) {
   return selectArticle(filteredArticles);
@@ -74,5 +81,6 @@ Promise.resolve(narrowDown(articles, searchTerms, isDeep, isApro)).then(function
     });
   });
 }).catch(function catchAll(err) {
-  console.log(err);
+  console.log(err.message);
+  console.log(err.stack);
 });
