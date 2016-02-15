@@ -39,13 +39,13 @@ describe('methods', function() {
 describe('getContents', function() {
   var mockArticle = {
     title: 'foo bar',
-    path: path.join(process.cwd(), 'test', 'mock', 'mockArticle.md'),
+    mdPath: path.join(process.cwd(), 'test', 'mock', 'mockArticle.md'),
     description: 'my description',
   };
   var finishedMockArticle = Object.create(mockArticle);
 
   before(function(done) {
-    fsReadFile(mockArticle.path, 'utf8').then(function(data) {
+    fsReadFile(mockArticle.mdPath, 'utf8').then(function(data) {
       finishedMockArticle.contents = data;
       done();
     }).catch(function(err) { console.log(err);});
@@ -54,7 +54,7 @@ describe('getContents', function() {
   it('takes in an article object and adds contents to it', function(done) {
     fileio.getContents(mockArticle).then(function(newArticle) {
       expect(newArticle.title).to.equal(finishedMockArticle.title);
-      expect(newArticle.path).to.equal(finishedMockArticle.path);
+      expect(newArticle.mdPath).to.equal(finishedMockArticle.path);
       expect(newArticle.description).to.equal(finishedMockArticle.description);
       expect(newArticle.contents).to.equal(finishedMockArticle.contents);
       done();
