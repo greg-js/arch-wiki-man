@@ -38,7 +38,7 @@ describe('narrowDown', function() {
 
 describe('selectArticle', function() {
   it('throws an error if the passed in articles array is empty', function(done) {
-    find.selectArticle([]).then(function() {
+    find.selectArticle([], 'english').then(function() {
       // this should never run
       console.warning('check ./test/find.js because you should never see this');
       done();

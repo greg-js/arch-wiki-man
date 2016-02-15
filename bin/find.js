@@ -10,9 +10,10 @@ var narrowDown = require('../lib/find').narrowDown;
 var selectArticle = require('../lib/find').selectArticle;
 var tmpSave = require('../lib/fileio').tmpSave;
 var removeTmp  = require('../lib/fileio').removeTmp;
+var chalk = require('chalk');
 
 var lastUpdate = require('arch-wiki-md-repo').updated;
-var articles = require('arch-wiki-md-repo').db;
+var db = require('arch-wiki-md-repo').db;
 
 var spawn = require('child_process').spawn;
 
@@ -32,7 +33,9 @@ var yargs = require('yargs')
   .describe('w', 'open in browser')
   .default('l', 'english')
   .alias('l', 'language')
-  .describe('l', 'choose a language (default: english)')
+  .describe('l', 'choose a language (note: auto-fallback to English if no matches are found)')
+  .boolean('list-languages')
+  .describe('list-languages', 'print a list of available languages')
   .help('h')
   .alias('h', 'help')
   .argv;
@@ -43,19 +46,43 @@ var isApro = yargs.k;
 var isWeb = yargs.w;
 var lang = yargs.l;
 
+var articles;
+var englishArticles = null;
+var doFallback = false;
+var langs;
+
 var options = {
   name: '',
   section: 1,
   description: '',
   date: lastUpdate,
-  version: '1.0.0',
+  version: '1.1.0',
   manual: '',
 };
 
-articles = _.find(articles, { lang: lang }).articles;
+yargs.$0 = 'awman';
 
-Promise.resolve(narrowDown(articles, searchTerms, isDeep, isApro)).then(function select(filteredArticles) {
-  return selectArticle(filteredArticles);
+if (yargs.listLanguages) {
+  langs = db.map(function getLanguages(e) { return e.lang; }).sort();
+  langs.forEach(function printLanguages(lan) { console.log(lan); });
+  process.exit();
+}
+
+try {
+  articles = _.find(db, { lang: lang }).articles;
+} catch (e) {
+  if (e instanceof TypeError) {
+    console.log('Sorry, ' + chalk.yellow(lang) + ' is ' + chalk.bold('not') + ' a supported language.\n`awman --list-languages` to get a list of available languages');
+    process.exit();
+  }
+}
+
+if (lang !== 'english') {
+  englishArticles = _.find(db, { lang: 'english' }).articles;
+}
+
+Promise.resolve(narrowDown(articles, searchTerms, isDeep, isApro, doFallback, englishArticles)).then(function select(filteredArticles) {
+  return selectArticle(filteredArticles, lang, searchTerms, isDeep, isApro, englishArticles);
 }).then(function makeRoff(selectedArticle) {
   return getContents(selectedArticle);
 }).then(function processArticle(article) {
@@ -68,7 +95,7 @@ Promise.resolve(narrowDown(articles, searchTerms, isDeep, isApro)).then(function
 }).then(function passToRemarkMan(article) {
   options.name = article.title;
   options.manual = article.url;
-  options.description = article.description;
+  // options.description = article.description;
 
   return convert(article.contents, options);
 }).then(function saveTmpFile(roff) {
@@ -77,10 +104,11 @@ Promise.resolve(narrowDown(articles, searchTerms, isDeep, isApro)).then(function
   var man = spawn('man', [tmpFile], { stdio: 'inherit' });
   man.on('exit', function onExit() {
     Promise.resolve(removeTmp()).then(function done() {
-      console.log('All done');
     });
   });
 }).catch(function catchAll(err) {
-  console.log(err.message);
-  console.log(err.stack);
+  console.error(chalk.red(err));
+  if (err.stack) {
+    console.log(chalk.yellow(err.stack));
+  }
 });
