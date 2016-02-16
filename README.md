@@ -5,11 +5,13 @@ A tool to browse and search a constantly updated local copy of the entire (Engli
 npm install -g arch-wiki-man
 ```
 
-![screenshot](./docs/screenshot.png)
+Or you can also install it [through the AUR](https://aur.archlinux.org/packages/arch-wiki-man/)
+
+![example](./docs/awman.webm)
 
 # Usage & Examples
 
-## `awman`
+## Basic
 
 ```
 awman beginners guide
@@ -39,7 +41,7 @@ The `-d` or `--desc-search` option causes searches to scan both the titles _and_
 awman -k wayland
 ```
 
-The familiar `-k` or `--apropos` option causes searches to scan the contents for a match as well. This option makes searches run significantly slower.
+The familiar `-k` or `--apropos` option causes searches to scan the contents for a match as well. It's worth noting that this option makes searches run significantly slower.
 
 ## Open in a browser
 
@@ -49,7 +51,21 @@ awman -w tmux
 
 The `-w` or `--web` option opens the resulting match in a web browser rather than with `man`. It uses `xdg-open` to open the relevant url in your default browser.
 
-# Updating
+## Search in other languages
+
+```
+awman -l spanish openbox
+```
+
+The default is English and you can get a list of available language options with `awman --list-languages`. For now though, only the articles that are hosted on the same domain as the English Arch Wiki have been added to the database.
+
+If your search fails to find any results, `awman` will automatically fall back to an English-language search.
+
+## Cancel searches
+
+Simply do a `ctrl-c` to exit the selection menu without entering `man`. To exit `man`, press `q`.
+
+# Updating through npm
 
 ```
 npm install -g arch-wiki-man
