@@ -7,7 +7,7 @@ npm install -g arch-wiki-man
 
 Or you can also install it [through the AUR](https://aur.archlinux.org/packages/arch-wiki-man/)
 
-![example](./docs/awman.webm)
+![example](./docs/awman.gif)
 
 # Usage & Examples
 
