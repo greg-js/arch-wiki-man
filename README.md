@@ -1,4 +1,6 @@
-A tool to browse and search a constantly updated local copy of the entire (English) Arch Wiki on the command line using `man`.
+A tool to browse and search a constantly updated local copy of the entire Arch Wiki on the command line using `man`.
+
+![example](./docs/awman.gif)
 
 # Installation
 ```
@@ -6,8 +8,6 @@ npm install -g arch-wiki-man
 ```
 
 Or you can also install it [through the AUR](https://aur.archlinux.org/packages/arch-wiki-man/)
-
-![example](./docs/awman.gif)
 
 # Usage & Examples
 
