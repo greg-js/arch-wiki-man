@@ -2,7 +2,7 @@
 
 'use strict';
 
-var _ = require('lodash');
+var findItem = require('../lib/util').findItem;
 var getContents = require('../lib/fileio').getContents;
 var convert = require('../lib/fileio').convert;
 var narrowDown = require('../lib/find').narrowDown;
@@ -68,7 +68,7 @@ if (yargs.listLanguages) {
 }
 
 try {
-  articles = _.find(db, { lang: lang }).articles;
+  articles = findItem(db, 'lang', lang).articles;
 } catch (e) {
   if (e instanceof TypeError) {
     console.log('Sorry, ' + chalk.yellow(lang) + ' is ' + chalk.bold('not') + ' a supported language.\n`awman --list-languages` to get a list of available languages');
@@ -77,7 +77,7 @@ try {
 }
 
 if (lang !== 'english') {
-  englishArticles = _.find(db, { lang: 'english' }).articles;
+  englishArticles = findItem(db, 'lang', 'english').articles;
 }
 
 Promise.resolve(narrowDown(articles, searchTerms, isDeep, isApro, doFallback, englishArticles)).then(function select(filteredArticles) {
