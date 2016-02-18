@@ -26,10 +26,7 @@
     "bluebird": "^3.1.5",
     "chalk": "^1.1.1",
     "inquirer": "^0.12.0",
-    "lodash": "^4.3.0",
-    "remark": "^3.2.2",
-    "remark-man": "^2.0.1",
-    "remark-unlink": "^2.0.0",
+    "markdown2troff": "^0.1.0",
     "sanitize-filename": "^1.5.3",
     "tmp": "0.0.28",
     "yargs": "^3.32.0"
