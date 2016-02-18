@@ -11,27 +11,23 @@ var fsUnlink = Promise.promisify(require('fs').unlink);
 var path = require('path');
 
 describe('methods', function() {
-  it('has a convert function', function() {
+  it('should have a convert function', function() {
     expect(fileio.convert).to.be.a('function');
   });
 
-  it('has a getContents function', function() {
+  it('should have a getContents function', function() {
     expect(fileio.getContents).to.be.a('function');
   });
 
-  it('has a tmpSave function', function() {
+  it('should have a tmpSave function', function() {
     expect(fileio.tmpSave).to.be.a('function');
   });
 
-  it('has a removeTmp function', function() {
+  it('should have a removeTmp function', function() {
     expect(fileio.removeTmp).to.be.a('function');
   });
 
-  it('has a processMd function', function() {
-    expect(fileio.processMd).to.be.a('function');
-  });
-
-  it('has a getTmp function', function() {
+  it('should have a getTmp function', function() {
     expect(fileio.getTmp).to.be.a('function');
   });
 });
@@ -51,7 +47,7 @@ describe('getContents', function() {
     }).catch(function(err) { console.log(err);});
   });
 
-  it('takes in an article object and adds contents to it', function(done) {
+  it('should take in an article object and adds contents to it', function(done) {
     fileio.getContents(mockArticle).then(function(newArticle) {
       expect(newArticle.title).to.equal(finishedMockArticle.title);
       expect(newArticle.mdPath).to.equal(finishedMockArticle.path);
@@ -78,15 +74,15 @@ describe('convert', function() {
     }).catch(function(err) { console.log(err); });
   });
 
-  it('converts articles from md to roff', function() {
-    expect(fileio.convert(contents)).to.contain(goodRoff.substr(1, -1).trim());
+  it('should convert articles from md to roff', function() {
+    expect(fileio.convert(contents, {})).to.contain(goodRoff.substr(1, -1).trim());
   });
 });
 
 describe('tmpSave', function() {
   var tmp = null;
 
-  it('saves a temporary file', function(done) {
+  it('should save a temporary file', function(done) {
     fileio.tmpSave('hello world').then(function(tmpFile) {
       tmp = tmpFile;
       expect(tmpFile).to.equal(path.resolve(fileio.getTmp()));
@@ -111,7 +107,7 @@ describe('removeTmp', function() {
     });
   });
 
-  it('deletes the temporary file', function(done) {
+  it('should delete the temporary file', function(done) {
     fileio.removeTmp().then(function(result) {
       expect(result).to.equal('done');
       done();
@@ -119,20 +115,8 @@ describe('removeTmp', function() {
   });
 });
 
-describe('processMd', function() {
-  var article = {
-    contents: '[foo](http://www.bar.com)',
-  };
-
-  it('processes the markdown', function() {
-    var converted = fileio.processMd(article);
-    expect(converted).to.be.an('object');
-    expect(converted.contents).to.equal('foo\n');
-  });
-});
-
 describe('getTmp', function() {
-  it('gets the tmpfile location', function() {
+  it('should get the tmpfile location', function() {
     expect(fileio.getTmp()).to.be.a('string');
   });
 });

@@ -8,7 +8,7 @@ var util = require('../lib/util');
 var path = require('path');
 
 describe('methods', function() {
-  it('has a getArticlePath function', function() {
+  it('should have a getArticlePath function', function() {
     expect(util.getArticlePath).to.be.a('function');
   });
 });
@@ -20,7 +20,7 @@ describe('relativeArticlePath', function() {
   var reFooToMatch = new RegExp(path.join('node_modules', 'arch-wiki-md-repo', 'wiki', '_content', 'foo.md'), 'i');
   var reBarToMatch = new RegExp(path.join('node_modules', 'arch-wiki-md-repo', 'wiki', '_content', 'bar.md'), 'i');
 
-  it('converts relative paths from the db to absolute', function() {
+  it('should convert relative paths from the db to absolute', function() {
     expect(convertedFoo).to.match(reFooToMatch);
     expect(convertedBar).to.match(reBarToMatch);
   });
