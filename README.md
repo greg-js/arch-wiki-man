@@ -67,12 +67,21 @@ Simply do a `ctrl-c` to exit the selection menu without entering `man`. To exit 
 
 # Updating through npm
 
+Just reinstall the package:
+
 ```
 npm install -g arch-wiki-man
 
 ```
 
-Updates are pushed automatically every two days to `https://github.com/greg-js/arch-wiki-md-repo`, a dependency for this project. Whenever the install command is run, the changes will be fetched.
+Updates are pushed automatically every two days to `https://github.com/greg-js/arch-wiki-md-repo`, a dependency for this project. Whenever the install command is run, arch-wiki-man will fetch the changes from arch-wiki-md-repo, giving you access to the latest changes.
+
+# Updating using yaourt
+
+Just reinstall the package (see paragraph above for explanation):
+
+```
+yaourt -S arch-wiki-man
 
 # License
 
