@@ -7,7 +7,8 @@
     "awman": "bin/find.js"
   },
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha ./test"
+    "test": "./node_modules/mocha/bin/mocha ./test",
+    "update": "npm update arch-wiki-md-repo"
   },
   "repository": {
     "type": "git",
