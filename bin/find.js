@@ -17,7 +17,7 @@ var db = require('arch-wiki-md-repo').db;
 var spawn = require('child_process').spawn;
 
 var yargs = require('yargs')
-  .usage('Usage: $0 <search terms>')
+  .usage('Usage: awman <search terms>')
   .default('d', false)
   .boolean('d')
   .alias('d', 'desc-search')
@@ -37,6 +37,7 @@ var yargs = require('yargs')
   .describe('list-languages', 'print a list of available languages')
   .help('h')
   .alias('h', 'help')
+  .epilog('To update, run `awman-update`')
   .argv;
 
 var searchTerms = yargs._;
