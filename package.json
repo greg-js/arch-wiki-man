@@ -4,11 +4,11 @@
   "description": "The Arch Wiki as linux man pages",
   "main": "index.js",
   "bin": {
-    "awman": "bin/find.js"
+    "awman": "bin/find.js",
+    "awman-update": "bin/update.js"
   },
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha ./test",
-    "update": "npm update arch-wiki-md-repo"
+    "test": "./node_modules/mocha/bin/mocha ./test"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,7 @@
     "chalk": "^1.1.1",
     "inquirer": "^0.12.0",
     "markdown2troff": "^0.1.0",
+    "npmi": "^2.0.1",
     "sanitize-filename": "^1.5.3",
     "tmp": "0.0.28",
     "yargs": "^3.32.0"

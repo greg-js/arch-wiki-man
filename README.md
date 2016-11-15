@@ -14,34 +14,33 @@ With colors (this depends on your own configuration) and showing off language su
 npm install -g arch-wiki-man
 ```
 
-Or you can also install it [through the AUR](https://aur.archlinux.org/packages/arch-wiki-man/). For example, using yaourt:
+Or install it [through the AUR](https://aur.archlinux.org/packages/arch-wiki-man/). For example, using yaourt:
 
 ```
 yaourt -S arch-wiki-man
 ```
 
-# Updating through npm
+# Update with `awman-update`
 
-## npm
+Updates are pushed automatically every two days to `https://github.com/greg-js/arch-wiki-md-repo`, a dependency for this project.
 
-Just reinstall the package:
-
-```
-npm install -g arch-wiki-man
+Fetch all changes with the `awman-update` script:
 
 ```
-
-Updates are pushed automatically every two days to `https://github.com/greg-js/arch-wiki-md-repo`, a dependency for this project. Whenever the install command is run, arch-wiki-man will fetch the changes from arch-wiki-md-repo, giving you access to the latest changes.
-
-## yaourt
-
-Just reinstall the package (see paragraph above for explanation):
-
-```
-yaourt -S arch-wiki-man
+awman-update
 ```
 
-Of course you don't *have* to use yaourt for reinstalling the package, this is just an example. Use any helper you want or compile the AUR package yourself.
+Even when there are no new changes since the last update, running `awman-update` will actually reinstall the underlying repo, so you can use it in case something somehow goes wrong.
+
+
+# Update by reinstalling the package
+
+`awman-update` is faster and more convenient, but you can also get the latest changes simply by reinstalling this global package:
+
+```
+npm install -g arch-wiki-man   # for npm users
+yaourt -S arch-wiki-man        # for AUR users (yaourt is just an example, use any helper you want)
+```
 
 # Usage & Examples
 
